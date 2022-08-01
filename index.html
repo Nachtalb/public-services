@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nachtalb</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#ff6c60">
+  <link rel="shortcut icon" href="/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#1f1f1f">
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#1f1f1f">
+
+
+  <style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+        --fg-title-color: #FF6C60;
+        --fg-color: #F8F8F2;
+        --bg-color: #1F1F1F;
+        --icon-size: 30vw;
+    }
+
+
+    body, html {
+      color: var(--fg-color);
+      background: var(--bg-color);
+      height: 100%;
+      margin: 0;
+      font-family: 'Yaldevi Jaffna', Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      font-size: 2em;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: 400;
+      max-width: 100%;
+      word-wrap: break-word;
+      text-align: center;
+      font-size: 2em;
+      color: var(--fg-title-color);
+    }
+
+    h1 a {
+      text-decoration: none;
+      color: var(--fg-title-color);
+      position: relative;
+      font-weight: 700;
+    }
+
+    h1 a:hover, h1 a:focus, h1 a:active {
+      outline: none;
+    }
+
+    h1 a::after {
+      content: "";
+      height: 3px;
+      width: 0%;
+      position: absolute;
+      display: block;
+      background-color: var(--fg-title-color);
+      bottom: 0.2em;
+      transition: ease-out width 250ms;
+      left: 0;
+    }
+
+    h1 a:hover::after, h1 a:focus::after, h1 a:active::after {
+      width: 100%;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0;
+      opacity: 1;
+      transition: all ease-in-out 400ms;
+    }
+
+    .hide .container {
+      opacity: 0;
+      margin-top: -30px;
+    }
+
+    @media screen and (min-width: 769px) {
+      .container {
+        height: 100%;
+      }
+    }
+
+    .container-inner {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .icon {
+      width: var(--icon-size);
+      font-size: calc(var(--icon-size) / 4);
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      margin: 50px;
+      color: var(--fg-color);
+      transition: ease-in-out transform 150ms;
+    }
+
+    .icon:hover, .icon:focus, .icon:active {
+      transform: scale(1.1);
+      outline: none;
+    }
+
+    .break {
+      display: none;
+      flex-basis: 100%;
+      height: 0;
+    }
+
+    .svg-icon::before {
+      background-size: contain;
+      background-repeat: no-repeat;
+      content: '';
+      display: block;
+      height: var(--icon-size);
+      width: var(--icon-size);
+    }
+
+    .disabled { filter: brightness(0.3); }
+
+    .disabled:hover, .disabled:focus, .disabled:active { transform: scale(1.0); }
+
+    .icon.twitter::before { background-image: url('icons/twitter.svg'); }
+    .icon.youtube::before { background-image: url('icons/youtube.svg'); }
+    .icon.search::before { background-image: url('icons/search.svg'); }
+    .icon.reddit::before { background-image: url('icons/reddit.svg'); }
+    .icon.file-text::before { background-image: url('icons/file-text.svg'); }
+
+    @media screen and (min-width: 425px) and (orientation: landscape) {
+      .icon {
+        --icon-size: 20vw;
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      .icon {
+        --icon-size: 100px;
+      }
+
+      .break {
+        display: block;
+      }
+    }
+    @font-face {
+      font-family: 'Yaldevi Jaffna';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Yaldevi Jaffna'), url('fonts/YaldeviJaffna-ExtraLight.woff') format('woff');
+    }
+    @font-face {
+      font-family: 'Yaldevi Jaffna';
+      font-style: normal;
+      font-weight: 500;
+      src: local('Yaldevi Jaffna'), url('fonts/YaldeviJaffna-Light.woff') format('woff');
+    }
+
+    @font-face {
+    font-family: 'Yaldevi Jaffna';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Yaldevi Jaffna'), url('fonts/YaldeviJaffna-Medium.woff') format('woff');
+  }
+  </style>
+</head>
+<body>
+<script>
+  document.body.className = "hide";
+  window.onload = () => { document.body.className = "" };
+</script>
+<div class="container">
+  <h1><a href="https://nachtalb.io" target="_blank" alt="nachtalb.io" title="nachtalb.io">Nachtalb's</a> Public Services</h1>
+  <div class="container-inner">
+    <a class="icon svg-icon youtube disabled" alt="invidious (YoutTube)" title="invidious (YoutTube)">
+      invidious
+    </a>
+    <a target="_blank" class="icon svg-icon twitter" alt="nitter (Twitter)" title="nitter (Twitter)" href="https://nitter.nachtalb.io/">
+      nitter
+    </a>
+    <a class="icon svg-icon search disabled" alt="searx (meta search engine)" title="searx (meta search engine)">
+      searx
+    </a>
+    <a target="_blank" class="icon svg-icon reddit alt="libreddit (Reddit)" title="libreddit (Reddit)" href="https://libreddit.nachtalb.io/">
+      libreddit
+    </a>
+    <a target="_blank" class="icon svg-icon file-text alt="hastebin (pastebin)" title="hastebin (pastebin)" href="https://bin.nachtalb.io/">
+      hastebin
+    </a>
+  </div>
+</div>
+</body>
+</html>
