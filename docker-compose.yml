@@ -1,0 +1,156 @@
+version: '3'
+services:
+  rimgo:
+    container_name: rimgo
+    image: ghcr.io/xnaas/rimgo:latest
+    restart: unless-stopped
+    ports:
+      - "8808:3000"
+    environment:
+      - RIMGU_IMGUR_CLIENT_ID=546c25a59c58ad7
+    networks:
+      - nginx
+
+  libremdb:
+    container_name: libremdb
+    image: quay.io/pussthecatorg/libremdb:latest
+    restart: unless-stopped
+    ports:
+      - "8809:8809"
+    networks:
+      - nginx
+    environment:
+      - "PORT=8809"
+      - "URL=http://localhost:8809"
+      - "NODE_ENV=production"
+      - "IMAGE_QUALITY=500"
+
+  quetre:
+    container_name: quetre
+    image: quay.io/pussthecatorg/quetre:latest
+    restart: unless-stopped
+    networks:
+      - nginx
+    ports:
+      - "8806:8806"
+    environment:
+      - "NODE_ENV=production"
+      - "PORT=8806"
+
+  proxitok:
+    container_name: proxitok
+    image: ghcr.io/pablouser1/proxitok:master
+    ports:
+      - 8807:80
+    environment:
+      - LATTE_CACHE=/cache
+      - API_CACHE=redis
+      - REDIS_HOST=proxitok-redis
+      - REDIS_PORT=6379
+      - API_SIGNER=remote
+      - API_SIGNER_URL=http://proxitok_signer:8080/signature
+    volumes:
+      - proxitok-cache:/cache
+    depends_on:
+      - proxitok_redis
+      - proxitok_signer
+    networks:
+      - nginx
+      - proxitok
+
+  proxitok_redis:
+    container_name: proxitok_redis
+    image: redis:7-alpine
+    command: redis-server --save 60 1 --loglevel warning
+    restart: unless-stopped
+    networks:
+      - proxitok
+
+  proxitok_signer:
+    container_name: proxitok_signer
+    image: ghcr.io/pablouser1/signtok:master
+    restart: unless-stopped
+    networks:
+      - proxitok
+
+  nitter:
+    container_name: nitter
+    image: zedeus/nitter:latest
+    restart: unless-stopped
+    volumes:
+      - /mnt/d/docker/nitter/nitter.conf:/src/nitter.conf
+      - /mnt/d/docker/nitter/data/:/data
+    environment:
+      - REDIS_HOST=nitter_redis
+    depends_on:
+      - nitter_redis
+    networks:
+      - nginx
+      - nitter
+
+  nitter_redis:
+    container_name: nitter_redis
+    image: redis:6-alpine
+    restart: unless-stopped
+    volumes:
+      - nitter-redis-data:/var/lib/redis
+    networks:
+      - nitter
+
+  hastebin:
+    image: rlister/hastebin
+    container_name: hastebin
+    restart: always
+    volumes:
+      - /mnt/d/docker/hastebin:/app/data
+    environment:
+      STORAGE_TYPE: file
+      KEYGENERATOR_TYPE: random
+      LOGGING_LEVEL: warning
+    networks:
+      - nginx
+
+  deemix:
+    image: registry.gitlab.com/bockiii/deemix-docker
+    container_name: deemix
+    volumes:
+      - /mnt/g/downloads/deemix:/downloads
+      - /mnt/d/docker/deemix:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK_SET=022
+      - TZ=Europe/Zurich
+    ports:
+      - 6595:6595
+    networks:
+      - default
+      - nginx
+    restart: unless-stopped
+
+  libreddit:
+    image: spikecodes/libreddit
+    container_name: libreddit
+    restart: unless-stopped
+    environment:
+      - "LIBREDDIT_DEFAULT_SHOW_NSFW=on"
+      - "LIBREDDIT_DEFAULT_USE_HLS=on"
+      - "LIBREDDIT_DEFAULT_THEME=laserwave"
+    networks:
+      - nginx
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "--tries=1", "http://localhost:8080/settings"]
+      interval: 5m
+      timeout: 3s
+
+volumes:
+  nitter-redis-data:
+
+networks:
+  nginx:
+    external: true
+  default:
+  omgur:
+  nitter:
+  n8n:
+  proxitok:
