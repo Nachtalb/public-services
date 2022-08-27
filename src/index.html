@@ -90,12 +90,6 @@
       margin-top: -30px;
     }
 
-    @media screen and (min-width: 769px) {
-      .container {
-        height: 100%;
-      }
-    }
-
     .container-inner {
       display: flex;
       flex-direction: row;
@@ -143,7 +137,15 @@
     .icon.reddit::before { background-image: url('icons/reddit.svg'); }
     .icon.file-text::before { background-image: url('icons/file-text.svg'); }
     .icon.rimgo::before { background-image: url('icons/image.svg'); }
+    .icon.searxng::before { background-image: url('icons/search.svg'); }
+    .icon.translate::before { background-image: url('icons/globe.svg'); }
+    .icon.wikiless::before { background-image: url('icons/book.svg'); }
+    .icon.quetre::before { background-image: url('icons/help-circle.svg'); }
+    .icon.proxitok::before { background-image: url('icons/tv.svg'); }
+    .icon.libremdb::before { background-image: url('icons/disc.svg'); }
     .icon.matrix::before { background-image: url('icons/message.svg'); }
+    .icon.status::before { background-image: url('icons/activity.svg'); }
+    .icon.code::before { background-image: url('icons/code.svg'); }
 
     @media screen and (min-width: 425px) and (orientation: landscape) {
       .icon {
@@ -154,6 +156,10 @@
     @media screen and (min-width: 1024px) {
       .icon {
         --icon-size: 100px;
+      }
+
+      .container {
+        height: 100%;
       }
 
       .break {
@@ -195,14 +201,38 @@
     <a target="_blank" class="icon svg-icon reddit" alt="libreddit (Reddit)" title="libreddit (Reddit)" href="https://libreddit.nachtalb.io/">
       libreddit
     </a>
-    <a target="_blank" class="icon svg-icon file-text" alt="hastebin (pastebin)" title="hastebin (pastebin)" href="https://bin.nachtalb.io/">
+    <a target="_blank" class="icon svg-icon file-text" alt="hastebin (Pastebin)" title="hastebin (Pastebin)" href="https://bin.nachtalb.io/">
       hastebin
     </a>
-    <a target="_blank" class="icon svg-icon rimgo" alt="rimgo (imgur)" title="rimgo (imgur)" href="https://rimgo.nachtalb.io/">
+    <a target="_blank" class="icon svg-icon rimgo" alt="rimgo (Imgur)" title="rimgo (Imgur)" href="https://rimgo.nachtalb.io/">
       rimgo
     </a>
-    <a target="_blank" class="icon svg-icon matrix" alt="matrix" title="matrix" href="https://matrix.nachtalb.io/">
+    <a target="_blank" class="icon svg-icon searxng" alt="searxng (search engines)" title="searxng (search engines)" href="https://searxng.nachtalb.io/">
+      searxng
+    </a>
+    <a target="_blank" class="icon svg-icon translate" alt="simply translate (translation engines)" title="simply translate (translation engines)" href="https://translate.nachtalb.io/">
+      translate
+    </a>
+    <a target="_blank" class="icon svg-icon wikiless" alt="wikiless (Wikipedia)" title="wikiless (Wikipedia)" href="https://wikiless.nachtalb.io/">
+      wikiless
+    </a>
+    <a target="_blank" class="icon svg-icon quetre" alt="quetre (Quora)" title="quetre (Quora)" href="https://quetre.nachtalb.io/">
+      quetre
+    </a>
+    <a target="_blank" class="icon svg-icon proxitok" alt="proxitok (TikTok)" title="proxitok (TikTok)" href="https://proxitok.nachtalb.io/">
+      proxitok
+    </a>
+    <a target="_blank" class="icon svg-icon libremdb" alt="libremdb (IMDB)" title="libremdb (IMDB)" href="https://libremdb.nachtalb.io/">
+      libremdb
+    </a>
+    <a target="_blank" class="icon svg-icon matrix" alt="Matrix Node" title="Matrix Node" href="https://matrix.nachtalb.io/">
       matrix
+    </a>
+    <a target="_blank" class="icon svg-icon status" alt="Staus Page" title="Status Page" href="https://status.nachtalb.io/status/services">
+      status
+    </a>
+    <a target="_blank" class="icon svg-icon code" alt="Source Code" title="Source Code" href="https://github.com/Nachtalb/public-services">
+      code
     </a>
   </div>
 </div>
