@@ -20,6 +20,7 @@ services:
     networks:
       - nginx
       - proxitok
+    restart: unless-stopped
 
   proxitok_redis:
     container_name: proxitok_redis
