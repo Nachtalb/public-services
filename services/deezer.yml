@@ -1,0 +1,23 @@
+version: '3'
+services:
+  deemix:
+    container_name: deemix
+    image: registry.gitlab.com/bockiii/deemix-docker
+    volumes:
+      - /mnt/g/downloads/deemix:/downloads
+      - /mnt/d/docker/deemix:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK_SET=022
+      - TZ=Europe/Zurich
+    # ports:
+    #   - 6595:6595
+    networks:
+      - default
+      - nginx
+    restart: unless-stopped
+
+networks:
+  nginx:
+    external: true

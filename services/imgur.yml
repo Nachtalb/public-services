@@ -1,0 +1,16 @@
+version: '3'
+services:
+  rimgo:
+    container_name: rimgo
+    image: ghcr.io/xnaas/rimgo:latest
+    restart: unless-stopped
+    # ports:
+    #   - "8808:3000"
+    environment:
+      - RIMGU_IMGUR_CLIENT_ID=546c25a59c58ad7
+    networks:
+      - nginx
+
+networks:
+  nginx:
+    external: true

@@ -1,0 +1,33 @@
+version: '3'
+services:
+  nitter:
+    container_name: nitter
+    image: zedeus/nitter:latest
+    restart: unless-stopped
+    volumes:
+      - /mnt/d/docker/nitter/nitter.conf:/src/nitter.conf
+      - /mnt/d/docker/nitter/data/:/data
+    environment:
+      - REDIS_HOST=nitter_redis
+    depends_on:
+      - nitter_redis
+    networks:
+      - nginx
+      - nitter
+
+  nitter_redis:
+    container_name: nitter_redis
+    image: redis:6-alpine
+    restart: unless-stopped
+    volumes:
+      - nitter-redis-data:/var/lib/redis
+    networks:
+      - nitter
+
+volumes:
+  nitter-redis-data:
+
+networks:
+  nginx:
+    external: true
+  nitter:

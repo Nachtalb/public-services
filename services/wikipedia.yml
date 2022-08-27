@@ -1,0 +1,27 @@
+version: "3"
+services:
+  wikiless:
+    container_name: wikiless
+    image: wikiless:latest
+    networks:
+      - nginx
+      - wikiless
+    environment:
+      REDIS_HOST: redis://wikiless:6379
+    # ports:
+    #   - "8805:8080"
+    depends_on:
+      - wikiless_redis
+
+  wikiless_redis:
+    container_name: wikiless_redis
+    image: "redis:alpine"
+    networks:
+      - wikiless
+    ports:
+      - "6379"
+
+networks:
+  nginx:
+    external: true
+  wikiless:

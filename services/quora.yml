@@ -1,0 +1,17 @@
+version: '3'
+services:
+  quetre:
+    container_name: quetre
+    image: quay.io/pussthecatorg/quetre:latest
+    restart: unless-stopped
+    networks:
+      - nginx
+    # ports:
+    #   - "8806:8806"
+    environment:
+      - "NODE_ENV=production"
+      - "PORT=8806"
+
+networks:
+  nginx:
+    external: true

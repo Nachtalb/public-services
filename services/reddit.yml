@@ -1,0 +1,20 @@
+version: '3'
+services:
+  libreddit:
+    container_name: libreddit
+    image: spikecodes/libreddit
+    restart: unless-stopped
+    environment:
+      - "LIBREDDIT_DEFAULT_SHOW_NSFW=on"
+      - "LIBREDDIT_DEFAULT_USE_HLS=on"
+      - "LIBREDDIT_DEFAULT_THEME=laserwave"
+    networks:
+      - nginx
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "--tries=1", "http://localhost:8080/settings"]
+      interval: 5m
+      timeout: 3s
+
+networks:
+  nginx:
+    external: true

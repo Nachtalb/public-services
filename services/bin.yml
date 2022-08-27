@@ -1,0 +1,18 @@
+version: '3'
+services:
+  hastebin:
+    container_name: hastebin
+    image: rlister/hastebin
+    restart: always
+    volumes:
+      - /mnt/d/docker/hastebin:/app/data
+    environment:
+      STORAGE_TYPE: file
+      KEYGENERATOR_TYPE: random
+      LOGGING_LEVEL: warning
+    networks:
+      - nginx
+
+networks:
+  nginx:
+    external: true
