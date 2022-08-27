@@ -4,8 +4,6 @@ services:
     container_name: libremdb
     image: quay.io/pussthecatorg/libremdb:latest
     restart: unless-stopped
-    ports:
-      - "8809:8809"
     networks:
       - nginx
     environment:
