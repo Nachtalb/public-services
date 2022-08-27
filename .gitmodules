@@ -1,0 +1,12 @@
+[submodule "searxng"]
+	path = searxng
+	url = git@github.com:Nachtalb/searxng-docker.git
+	branch = na/own-environment
+[submodule "translate"]
+	path = translate
+	url = git@github.com:Nachtalb/SimplyTranslate-Docker.git
+	branch = na/own-environment
+[submodule "wiki"]
+	path = wiki
+	url = git@github.com:Nachtalb/wikiless-docker.git
+	branch = na/own-environment
